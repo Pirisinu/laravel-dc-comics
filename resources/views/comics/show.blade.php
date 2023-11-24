@@ -28,7 +28,7 @@
                 <button class="btn btn-warning">
                     <a class="nav-link" href="{{route('comics.edit', $comic->id)}}">Modifica Fumetto</a>
                 </button>
-                <form action="{{route('comics.destroy', $comic)}}" method="post">
+                <form action="{{route('comics.destroy', $comic)}}" method="post" onsubmit="return confirm('Sicuro di voler eliminare questo Fumetto?')">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">
