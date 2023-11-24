@@ -26,7 +26,7 @@ class PageController extends Controller
      */
     public function create()
     {
-        return view('comics.create_comic');
+        return view('comics.create');
     }
 
     /**
@@ -42,13 +42,7 @@ class PageController extends Controller
 
         // creo un nuovo oggetto Comic
         $new_comic = new Comics();
-        $new_comic->title = $form_data['title'];
-        $new_comic->description = $form_data['description'];
-        $new_comic->thumb = $form_data['thumb'];
-        $new_comic->price = $form_data['price'];
-        $new_comic->series = $form_data['series'];
-        $new_comic->sale_date = $form_data['sale_date'];
-        $new_comic->type = $form_data['type'];
+        $new_comic->fill($form_data);
         // lo salvo nel db
         $new_comic->save();
 
