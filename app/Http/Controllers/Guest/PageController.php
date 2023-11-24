@@ -40,7 +40,7 @@ class PageController extends Controller
         // prendo tutti i dati dal form
         $form_data = $request->all();
 
-        // creo un nuovo oggetto Pasta
+        // creo un nuovo oggetto Comic
         $new_comic = new Comics();
         $new_comic->title = $form_data['title'];
         $new_comic->description = $form_data['description'];
@@ -52,7 +52,7 @@ class PageController extends Controller
         // lo salvo nel db
         $new_comic->save();
 
-        // vado alla show della nuova pasta
+        // vado alla show del nuovo comic
         return redirect()->route('comics.show', $new_comic->id);
     }
 
@@ -63,18 +63,18 @@ class PageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-{
-    // Trova il comic corrente
-    $comic = Comics::find($id);
+    {
+        // Trova il comic corrente
+        $comic = Comics::find($id);
 
-    // Trova il comic successivo
-    $nextComic = Comics::where('id', '>', $id)->first();
+        // Trova il comic successivo
+        $nextComic = Comics::where('id', '>', $id)->first();
 
-    // Trova il comic precedente
-    $prevComic = Comics::where('id', '<', $id)->orderBy('id', 'desc')->first();
+        // Trova il comic precedente
+        $prevComic = Comics::where('id', '<', $id)->orderBy('id', 'desc')->first();
 
-    return view('comics.comic', compact('comic', 'nextComic', 'prevComic'));
-}
+        return view('comics.comic', compact('comic', 'nextComic', 'prevComic'));
+    }
 
 
     /**
@@ -84,8 +84,11 @@ class PageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {   //seleziono il fumetto da editare
+        $comicToEdit = Comics::find($id);
+
+        return view('comics.edit_comic', compact('comicToEdit'));
+
     }
 
     /**

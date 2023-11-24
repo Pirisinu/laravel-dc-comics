@@ -22,7 +22,12 @@
                 <p>{{$comic->sale_date}}</p>
                 <h5>Genere:</h5>
                 <p>Genere: {{$comic->type}}</p>
-                <a href="{{route('comics.index')}}">Home</a>
+                <button class="btn btn-primary">
+                    <a class="nav-link" href="{{route('comics.index')}}">Home</a>
+                </button>
+                <button class="btn btn-warning">
+                    <a class="nav-link" href="{{route('comics.edit', $comic->id)}}">Modifica Fumetto</a>
+                </button>
             </div>
         </div>
         @include('partials.btn_next_prev')
