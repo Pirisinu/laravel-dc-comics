@@ -18,3 +18,4 @@ Route::get('/', [PageController::class , 'index'])->name('home');
 
 Route::resource('/comics', PageController::class);
 
+

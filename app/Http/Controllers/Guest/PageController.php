@@ -100,7 +100,8 @@ class PageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $comicToUpdate = Comics::find($id);
+        return redirect()->route('comics.show', compact('comicToUpdate'))->with('success', 'Fumetto aggiornato con successo.');
     }
 
     /**
