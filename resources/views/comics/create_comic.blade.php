@@ -7,7 +7,6 @@
 <div class="row m-3">
     <div class="col-8">
         <form action="{{ route('comics.store') }}" method="POST">
-            {{-- elemnto da inserire i  tutti i form di Laravel per un conctrollo di sicurezza  --}}
             @csrf
             <div class="mb-3">
                 <label for="title" class="form-label">Titolo</label>

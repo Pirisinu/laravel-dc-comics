@@ -63,10 +63,19 @@ class PageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $comic = Comics::find($id);
-        return view('comics.comic', compact('comic'));
-    }
+{
+    // Trova il comic corrente
+    $comic = Comics::find($id);
+
+    // Trova il comic successivo
+    $nextComic = Comics::where('id', '>', $id)->first();
+
+    // Trova il comic precedente
+    $prevComic = Comics::where('id', '<', $id)->orderBy('id', 'desc')->first();
+
+    return view('comics.comic', compact('comic', 'nextComic', 'prevComic'));
+}
+
 
     /**
      * Show the form for editing the specified resource.

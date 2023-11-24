@@ -8,7 +8,7 @@
     <!-- Styles -->
     @vite('resources/js/app.js')
 </head>
-<body>
+<body class="vh-100">
     @include('partials.header')
 
     @yield('content')
