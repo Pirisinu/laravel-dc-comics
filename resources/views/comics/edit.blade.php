@@ -45,9 +45,10 @@
                 <input value="{{ $comicToEdit->type }}" type="text" class="form-control" id="type" name="type" >
             </div>
 
-            <button type="submit" class="btn btn-primary">Salva modifiche</button>
+            <button type="submit" class="btn btn-success">Salva modifiche</button>
             <button type="reset" class="btn btn-warning">Annulla</button>
-            <button type="reset" class="btn btn-danger"><a href="{{route('comics.show',["comic"=>$comicToEdit->id])}}">Torna dietro</a></button>
+            <button class="btn btn-danger"><a href="{{route('comics.show',["comic"=>$comicToEdit->id])}}">Torna dietro</a></button>
+
         </form>
     </div>
 @endsection

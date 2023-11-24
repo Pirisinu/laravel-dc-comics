@@ -28,6 +28,14 @@
                 <button class="btn btn-warning">
                     <a class="nav-link" href="{{route('comics.edit', $comic->id)}}">Modifica Fumetto</a>
                 </button>
+                <form action="{{route('comics.destroy', $comic)}}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">
+                        Elimina Fumetto
+                    </button>
+                </form>
+
             </div>
         </div>
         @include('partials.btn_next_prev')

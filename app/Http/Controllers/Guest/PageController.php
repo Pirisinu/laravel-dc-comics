@@ -125,6 +125,8 @@ class PageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comicToDelete = Comics::find($id);
+        $comicToDelete->delete();
+        return redirect()->route('comics.index')->with('success', 'Record eliminato con successo.');
     }
 }
