@@ -73,7 +73,7 @@ class PageController extends Controller
         // Trova il comic precedente
         $prevComic = Comics::where('id', '<', $id)->orderBy('id', 'desc')->first();
 
-        return view('comics.comic', compact('comic', 'nextComic', 'prevComic'));
+        return view('comics.show', compact('comic', 'nextComic', 'prevComic'));
     }
 
 
@@ -87,7 +87,7 @@ class PageController extends Controller
     {   //seleziono il fumetto da editare
         $comicToEdit = Comics::find($id);
 
-        return view('comics.edit_comic', compact('comicToEdit'));
+        return view('comics.edit', compact('comicToEdit'));
 
     }
 
@@ -101,7 +101,20 @@ class PageController extends Controller
     public function update(Request $request, $id)
     {
         $comicToUpdate = Comics::find($id);
-        return redirect()->route('comics.show', compact('comicToUpdate'))->with('success', 'Fumetto aggiornato con successo.');
+        $comicToUpdate->update([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'thumb' => $request->input('thumb'),
+            'price' => $request->input('price'),
+            'series' => $request->input('series'),
+            'sale_date' => $request->input('sale_date'),
+            'type' => $request->input('type'),
+        ]);
+
+        $comicToUpdate->save();
+
+
+        return redirect()->route('comics.show',['comic' => $comicToUpdate->id])->with('success', 'Fumetto aggiornato con successo.');
     }
 
     /**
